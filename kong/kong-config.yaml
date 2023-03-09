@@ -1,0 +1,40 @@
+image:
+  repository: kong/kong-gateway
+  tag: latest
+
+env:
+  prefix: /kong_prefix/
+  database: "off"
+  plugins: bundled
+
+admin:
+  enabled: true
+  http:
+    enabled: true
+    servicePort: 8001
+    containerPort: 8001
+  tls:
+    parameters: []
+  labels:
+    enable-metrics: "true"
+
+ingressController:
+  enabled: true
+  installCRDs: false
+
+postgresql:
+  enabled: false
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8100"
+
+proxy:
+  enabled: true
+  type: NodePort
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70

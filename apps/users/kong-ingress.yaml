@@ -1,0 +1,6 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  name: do-not-preserve-host
+upstream:
+  host_header: users.users.svc
